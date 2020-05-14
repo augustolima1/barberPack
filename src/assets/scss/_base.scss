@@ -1,0 +1,107 @@
+:root {
+  font-size: 16px;
+  font-family: "Open Sans";
+}
+
+ 
+main {
+  animation: marginLeft 1s ease;
+  margin-left: 230px;
+}
+
+@keyframes marginLeft {
+from {
+  margin-left: 5rem;
+}
+to {
+  margin-left: 230px;
+}
+
+}
+
+@media (max-width: 767px){
+  main{margin-left:0;}
+}
+
+
+@media only screen and (min-width: map-get($map: $breakpoints, $key: "tablet")) {
+  main {
+    animation: marginLeft 1s ease;
+    margin-left: 230px;
+  }
+}
+@keyframes marginLeft {
+  from {
+    margin-left: 5rem;
+  }
+  to {
+    margin-left: 230px;
+  }
+}
+
+body {
+  
+  /*background: $gray-80;*/
+  background: #eeeeee;
+  font-size: 14px;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 300;
+  margin: 0;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body::-webkit-scrollbar {
+  width: 0.25rem;
+}
+
+body::-webkit-scrollbar-track {
+  background: $gray-80;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: $gray-60;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+ 
+section.context{
+  padding: 30px 15px;
+  
+} 
+
+.form{
+    background: #ffffff;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+    padding: 0.9375rem 20px;
+    border-radius: 6px;
+}
+
+.MuiOutlinedInput-input,.MuiOutlinedInput-input {
+  padding: 12.5px 14px !important;
+}
+
+.MuiInputLabel-outlined {
+  transform: translate(14px, 15px) scale(1) !important;
+}
+
+.MuiInputLabel-outlined.MuiInputLabel-shrink{
+    transform: translate(14px, -6px) scale(0.75) !important;
+}
+
+.MuiAutocomplete-inputRoot[class*="MuiOutlinedInput-root"] {
+  padding: 0px !important;
+}

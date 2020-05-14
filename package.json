@@ -1,0 +1,99 @@
+{
+  "name": "app",
+  "version": "0.1.0",
+  "private": true,
+  "author": {
+    "name": "Seu nome",
+    "email": "seu.email@email.com",
+    "url": "https://seu-site.com"
+  },
+  "homepage": "./",
+  "main": "public/electron.js",
+  "build": {
+    "appId": "com.app.app",
+    "productName": "Barber Pack",
+    "copyright": "Copyright © 2020",
+    "mac": {
+      "category": "public.app-category.utilities"
+    },
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "extraFiles": [
+      "db"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    }
+  },
+  "dependencies": {
+    "@date-io/date-fns": "1.x",
+    "@material-ui/core": "^4.9.13",
+    "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.53",
+    "@material-ui/pickers": "3",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "axios": "^0.19.2",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.2",
+    "electron-is-dev": "^1.2.0",
+    "electron-log": "^4.1.2",
+    "express": "^4.17.1",
+    "knex": "^0.21.1",
+    "moment": "^2.25.3",
+    "node-sass": "^4.14.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-hook-form": "^5.6.1",
+    "react-icons": "^3.10.0",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.4.1",
+    "react-sidemenu": "^1.1.0",
+    "react-text-mask": "^5.4.3",
+    "sqlite3": "^4.2.0",
+    "styled-components": "^5.1.0",
+    "typescript": "^3.9.2"
+  },
+  "scripts": {
+    "server": "nodemon ./public/api/express.js",
+    "start": "rescripts start",
+    "build": "rescripts build",
+    "test": "rescripts test",
+    "eject": "react-scripts eject",
+    "dev": "concurrently \"cross-env BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron .\"",
+    "postinstall": "electron-builder install-app-deps",
+    "preelectron-build": "yarn build",
+    "electron-build": "electron-builder -w"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@rescripts/cli": "^0.0.14",
+    "@rescripts/rescript-env": "^0.0.12",
+    "babel-plugin-root-import": "^6.5.0",
+    "concurrently": "^5.2.0",
+    "customize-cra": "^0.9.1",
+    "electron": "^8.2.5",
+    "electron-builder": "^22.6.0",
+    "eslint-import-resolver-babel-plugin-root-import": "^1.1.1",
+    "nodemon": "^2.0.3",
+    "react-app-rewired": "^2.1.5",
+    "wait-on": "^5.0.0"
+  }
+}
