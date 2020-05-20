@@ -42,11 +42,7 @@ export default function Routes() {
       
       <Route path="/rel/commission"           exact component={Commission} />
       <Route path="/rel/commission/detailed"  exact component={CommissionDetailed} />
-
-
-      
-      
-      <Route path="/" component={() =><h1>Desculpe, um erro ocorreu. Estaremos verificando o que aconteceu.</h1>} />
+      {/*<Route path="/" component={() =><h1>Desculpe, um erro ocorreu. Estaremos verificando o que aconteceu.</h1>} />*/}
     </Switch>
     
   );

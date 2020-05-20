@@ -93,7 +93,12 @@ export default function AttendanceItem() {
   }, []);
  
 
-  const handleDateChange = (date) => {
+   const handleDateChange = (date) => {
+       
+        let _date=moment(date).format('YYYY-MM-DD')
+
+        getServicesClient(values.client_id,_date);
+
          setValues({...values,date:date})
   };
 
@@ -108,11 +113,24 @@ export default function AttendanceItem() {
   }
 
 
+
+ 
+  async function getServicesClient(client_id,data) {
+     await api.get(`attendance/services/${client_id}/${data}`).then(response => {
+            setService(response.data);
+            setDisabledService(false);
+      })
+  }
+
   async function servicesClient(client_id) {
-        await api.get(`attendance/services/${client_id}`).then(response => {
+          let date=moment(values.date).format('YYYY-MM-DD')
+
+          await  getServicesClient(client_id,date);
+        
+        /*await api.get(`attendance/services/${client_id}`).then(response => {
                   setService(response.data);
                   setDisabledService(false);
-        })
+        })*/
   } 
 
   async function handleChangeClient(clientValue) {

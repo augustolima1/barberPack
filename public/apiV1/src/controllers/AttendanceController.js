@@ -111,7 +111,7 @@ module.exports = {
                 
 
         var PlanItemsCount = conn('plan_items')
-                            .count('*')
+                            .select(conn.raw('SUM(amount)'))
                             .where('plan_items.plan_id', conn.ref('d.id'))
                             .as('PlanItemsCount');
 
@@ -164,7 +164,7 @@ module.exports = {
       
         await conn('attendance').where('id', id).delete(); 
         await conn('attendance_items').where('attendance_id', id).delete(); 
-   
+   attendance_id
         return response.status(204).send();
    },
 
@@ -193,6 +193,7 @@ module.exports = {
                           'a.phone',
                           'c.id as plan_id'
                      ])
+                     .groupBy('a.id')
                      .orderBy('a.name', 'asc');
                       
                       
@@ -227,9 +228,21 @@ module.exports = {
 
 
     async services(request,response){ 
-        const { client_id } = request.params;
+        const { client_id,date } = request.params;
        
-      
+         var date_ini=moment(date).startOf('month').format('YYYY-MM-DD');
+         var date_end=moment(date).endOf('month').format('YYYY-MM-DD');
+
+          
+
+           var Amount_used = conn({f:'attendance_items'})
+                             .count('f.service_id')
+                             .whereBetween('f.date',[date_ini,date_end])
+                             .andWhere('f.client_id', conn.ref('a.id'))
+                             .andWhere('f.service_id', conn.ref('e.id'))
+                             .as('amount_used');           
+ 
+
         const services= await await conn({a:"client"})
                         .leftJoin({b:'client_dependent'},'b.dependente_id', '=','a.id')
                         .leftJoin({c:'client_plan'},function() {
@@ -237,21 +250,17 @@ module.exports = {
                         })
                         .leftJoin({d:'plan_items'},       'd.plan_id',   '=','c.plan_id')
                         .leftJoin({e:'services'},         'e.id',        '=','d.service_id') 
-                        .leftJoin({f:'attendance_items'}, 'f.service_id','=','d.service_id')
-                        .leftJoin({g:'attendance'},function() {
-                            this.on('g.id', '=','f.attendance_id').andOn('g.client_id', '=','a.id')
-                        }) 
                         .where('a.id', client_id)
                         .groupBy('e.id')
                         .select([
                                 'e.id', 
                                 'e.description',
                                 'd.amount',
-                        ]).count('f.service_id as amount_used')
-                          .orderBy('e.description', 'asc')
+                                Amount_used
+                        ])
+                        .orderBy('e.description', 'asc')
                         
-                
-            
+                 
              var servicesObj = services.map(function(row) {
                       let balance=row.amount-row.amount_used 
 

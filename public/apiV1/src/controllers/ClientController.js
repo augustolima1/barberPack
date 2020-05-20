@@ -15,7 +15,8 @@ async function getClient(client_id){
                 'plans.description',
                 'client_plan.expiration_day'
                 ])
-            .orderBy('name', 'asc')
+                .groupBy('client.id')
+                .orderBy('name', 'asc')
 
     return client;        
 }
@@ -41,6 +42,7 @@ module.exports = {
                     'c.expiration_day',
                     'e.name as holder'
                 ])
+                .groupBy('a.id')
                 .orderBy('a.name', 'asc');
 
             

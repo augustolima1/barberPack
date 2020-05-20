@@ -24,9 +24,9 @@ router.post('/users',userController.cerate);
 router.put('/users',userController.update);
 router.delete('/users/:id',userController.delete);
 
-router.get('/attendance'                     ,attendanceController.index);
-router.get('/attendance/client'              ,attendanceController.client);
-router.get('/attendance/services/:client_id' ,attendanceController.services);
+router.get('/attendance'                           ,attendanceController.index);
+router.get('/attendance/client'                    ,attendanceController.client);
+router.get('/attendance/services/:client_id/:date' ,attendanceController.services);
 router.get('/attendance/items/:attendance_id',attendanceController.attendanceItems);
 router.post('/attendance'                    ,attendanceController.cerate);
 router.delete('/attendance/:id'              ,attendanceController.delete);
