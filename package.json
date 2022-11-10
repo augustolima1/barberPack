@@ -89,7 +89,7 @@
     "babel-plugin-root-import": "^6.5.0",
     "concurrently": "^5.2.0",
     "customize-cra": "^0.9.1",
-    "electron": "^8.2.5",
+    "electron": "^18.3.7",
     "electron-builder": "^22.6.0",
     "eslint-import-resolver-babel-plugin-root-import": "^1.1.1",
     "nodemon": "^2.0.3",
